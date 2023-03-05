@@ -22,16 +22,18 @@ public class ManagerGame {
 
     public int round(String playerName1, String playerName2) {
 
-        if (foundIndex(playerName1) == -1) {
+        int index_1 = foundIndex(playerName1);
+        int index_2 = foundIndex(playerName2);
+        if (index_1 == -1) {
             throw new NotRegisteredException("The first player is not registered!");
-        } else if (foundIndex(playerName2) == -1) {
+        } else if (index_2 == -1) {
             throw new NotRegisteredException("The second player is not registered!");
-        } else if (foundIndex(playerName1) == foundIndex(playerName2)) {
+        } else if (index_1 == index_2) {
             throw new AlreadyRegisteredException("A player with that name is already registered");
         }
-        if (players.get(foundIndex(playerName1)).getStrength() > players.get(foundIndex(playerName2)).getStrength()) {
+        if (players.get(index_1).getStrength() > players.get(index_2).getStrength()) {
             return 1;
-        } else if (players.get(foundIndex(playerName1)).getStrength() < players.get(foundIndex(playerName2)).getStrength()) {
+        } else if (players.get(index_1).getStrength() < players.get(index_2).getStrength()) {
             return 2;
         } else {
             return 0;

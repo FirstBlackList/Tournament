@@ -22,30 +22,30 @@ public class ManagerGame {
 
     public int round(String playerName1, String playerName2) {
 
-        int index_1 = foundIndex(playerName1);
-        int index_2 = foundIndex(playerName2);
-        if (index_1 == -1) {
+        Player player_1 = foundIndex(playerName1);
+        Player player_2 = foundIndex(playerName2);
+        if (player_1 == null) {
             throw new NotRegisteredException("The first player is not registered!");
-        } else if (index_2 == -1) {
+        } else if (player_2 == null) {
             throw new NotRegisteredException("The second player is not registered!");
-        } else if (index_1 == index_2) {
+        } else if (player_1 == player_2) {
             throw new AlreadyRegisteredException("A player with that name is already registered");
         }
-        if (players.get(index_1).getStrength() > players.get(index_2).getStrength()) {
+        if (player_1.getStrength() > player_2.getStrength()) {
             return 1;
-        } else if (players.get(index_1).getStrength() < players.get(index_2).getStrength()) {
+        } else if (player_1.getStrength() < player_2.getStrength()) {
             return 2;
         } else {
             return 0;
         }
     }
 
-    public int foundIndex(String playerName) {
+    public Player foundIndex(String playerName) {
         for (Player player : players) {
             if (player.getName().equalsIgnoreCase(playerName)) {
-                return players.indexOf(player);
+                return player;
             }
         }
-        return -1;
+        return null;
     }
 }
